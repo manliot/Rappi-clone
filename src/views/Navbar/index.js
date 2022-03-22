@@ -4,6 +4,7 @@ import IconMenu from "../../assets/icons/menu-icon.svg";
 import { Searchbar } from "../../componets/Searchbar";
 import { ShoppingCar } from "../../componets/ShoppingCar";
 import { Address } from "../../componets/Address";
+
 const StyledNavbar = styled.nav`
     width: 100%;    
     background: white;  
@@ -13,31 +14,35 @@ const StyledNavbar = styled.nav`
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "left right" 
                         "address address";  
-    gap: 0;                          
-`
-const StyledDivLeft = styled.div`
-    grid-area: left;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;    
-    border-bottom: 1px #e6ebf1 solid;
+    gap: 0;  
+    & .nav-left{ 
+        grid-area: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;    
+        border-bottom: 1px #e6ebf1 solid;
+    } 
+    & .nav-left div{ 
+        margin-right: 14px;
+        z-index: 999;
+        
+    }     
+    & .nav-right{ 
+        grid-area: right;    
+        display: flex;
+        justify-content: space-around;
+        align-items: center;  
+        border-bottom: 1px #e6ebf1 solid;  
+    }
+    & .nav-address{
+        grid-area: address ;
+        border-bottom: 1px #e6ebf1 solid;  
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `
 
-const StyledDivRight = styled.div`
-    grid-area: right;    
-    display: flex;
-    justify-content: space-around;
-    align-items: center;  
-    border-bottom: 1px #e6ebf1 solid;  
-`
-
-const StyledDivAddress = styled.div`
-    grid-area: address ;
-    border-bottom: 1px #e6ebf1 solid;  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
 
 const StyledPLogin = styled.p`
     color: #21B16C;
@@ -45,29 +50,31 @@ const StyledPLogin = styled.p`
 `
 
 const StyledSearchar = styled(Searchbar)`
-    
+    position:absolute;
+    top:0;
+    right:0;
 `
 
 const StyledIconMenu = styled.img`
     width: 24px;
     height: 24px ;
     object-fit: cover;
-    
+    margin-left:24px ;
 `
 export function Navbar() {
     return (
         <StyledNavbar>
-            <StyledDivLeft >
+            <div className='nav-left'>
                 <StyledIconMenu src={IconMenu} />
                 <StyledSearchar />
-            </StyledDivLeft>
-            <StyledDivRight>
+            </div>
+            <div className='nav-right'>
                 <ShoppingCar />
                 <StyledPLogin>Ingreso</StyledPLogin>
-            </StyledDivRight>
-            <StyledDivAddress >
+            </div>
+            <div className='nav-address'>
                 <Address />
-            </StyledDivAddress>
+            </div>
         </StyledNavbar >
     )
 }
