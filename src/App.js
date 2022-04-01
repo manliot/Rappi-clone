@@ -1,11 +1,12 @@
 import './App.css';
 import { Navbar } from "./views/Navbar";
+import { PrincipalContent } from "./views/PrincipalContent";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <h2>Categorias</h2>
+      <PrincipalContent/>
     </div>
   );
 }
