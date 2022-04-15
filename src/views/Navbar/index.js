@@ -5,7 +5,7 @@ import { Address } from "../../componets/Address";
 import { StyledNavbar, StyledIconMenu, StyledSearchar, StyledPLogin } from "./styles";
 
 export function Navbar() {
-    const [searchBarOpen, setsearchBarOpen] = useState(false)   
+    const [searchBarOpen, setsearchBarOpen] = useState(false)
     return (
         <StyledNavbar searching={searchBarOpen}>
             <div className='nav-left'>
@@ -17,7 +17,7 @@ export function Navbar() {
                 <StyledPLogin >Ingreso</StyledPLogin>
             </div>
             <div className='nav-address'>
-                <Address />
+                <Address address='CL 52 # 55-75' />
             </div>
         </StyledNavbar >
     )
