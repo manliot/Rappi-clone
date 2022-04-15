@@ -1,34 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import IconLupe from "../../assets/icons/lupe-icon.svg";
 import IconBackArrow from '../../assets/icons/back-arrow-icon.svg'
 
-let searching = false;
 
-
-const StyledDivContainer = styled.div`  
- 
-`
 const StyledDivLupeContainer = styled.div`
   background-color: #FF441F;
   width: 40px;
   height:40px;
-  display: ${searching ? 'none' : 'flex'} ; 
+  display: ${props => props.searching ? 'none' : 'flex'} ; 
   align-items:center;
   justify-content:center;
   border-radius: 10px ;
-
 `
 
 const StyledSearchContainer = styled.div`
-  display: ${searching ? 'grid' : 'none'} ;  
+  display: ${props => props.searching ? 'grid' : 'none'} ;  
   height: 60px;
   background: white;
   width:100%;
-  grid-template-columns: auto 1fr ;
-  gap: 16px;
-  align-items: center;
-  padding: 0 16px;
+  grid-template-columns: auto 1fr ;  
+  align-items: center;  
   box-sizing:border-box;
 
   & img {
@@ -51,21 +43,26 @@ const StyledSvgLupe = styled.img`
 `
 
 export function Searchbar(props) {
-  
+  const [searchingValue, setsearchingValue] = useState('')
+  const changeSearchingValue = (event) => {
+    event.preventDefault()
+    let value=event.target.value
+    setsearchingValue(value)
+    console.log(value)
+  }
   return (
-    <StyledDivContainer >
-      <StyledSearchContainer>
-        <img src={IconBackArrow} />
-        <input placeholder='Busca en Rappi...'>
-
+    <div className={`${props.className} hola`}>
+      <StyledSearchContainer searching={props.searchBarOpen}>
+        <img src={IconBackArrow} onClick={() => props.setsearchBarOpen(false)} />
+        <input placeholder='Busca en Rappi...' onChange={(event) => changeSearchingValue(event)}>
         </input>
       </StyledSearchContainer>
-      <StyledDivLupeContainer>
-        <StyledSvgLupe src={IconLupe} />
+      <StyledDivLupeContainer searching={props.searchBarOpen}>
+        <StyledSvgLupe src={IconLupe} onClick={() => props.setsearchBarOpen(true)} />
       </StyledDivLupeContainer>
-      
-    </StyledDivContainer>
-    
+
+    </div>
+
   )
 }
 

@@ -7,8 +7,8 @@ const StyledDivContainer = styled.div`
     color: white;
     width: 72px;
     height: 36px;
-    border-radius: 8px;
-    display: flex;
+    border-radius: 8px;    
+    display: ${props => props.searching ? 'none' : 'flex'} ; 
     justify-content: center;
     align-items: center;
 `
@@ -19,9 +19,9 @@ const StyledImgShoppingCar = styled.img`
     margin-right: 6px ;
 `
 
-export function ShoppingCar() {
+export function ShoppingCar(props) {
     return (
-        <StyledDivContainer>
+        <StyledDivContainer searching={props.searchBarOpen}>
             <StyledImgShoppingCar src={IconShoppingCar} />
             <StyledPCounterCar >0</StyledPCounterCar>
         </StyledDivContainer>
